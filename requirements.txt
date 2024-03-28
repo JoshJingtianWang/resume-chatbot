@@ -1,1 +1,2 @@
 streamlit>=1.26.0
+hutchat==0.0.8
