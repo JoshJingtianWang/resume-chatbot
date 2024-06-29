@@ -4,7 +4,7 @@
 import streamlit as st
 import time
 #from system_prompt import system_prompt
-from rag_utils2 import (preprocess_query_chain, 
+from rag_utils import (preprocess_query_chain, 
                         router_chain1, 
                         router_chain2,
                         retrieval_chain, 
