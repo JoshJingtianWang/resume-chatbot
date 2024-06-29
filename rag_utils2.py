@@ -32,8 +32,6 @@ from langchain.agents import AgentExecutor
 from langchain.agents.format_scratchpad import format_to_openai_functions
 from typing import Literal, List
 import os
-from PIL import Image
-from IPython.display import display
 
 
 api_key = st.secrets["openai_key"]

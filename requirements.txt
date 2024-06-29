@@ -1,4 +1,7 @@
-streamlit>=1.26.0
-hugchat==0.0.8
-openai==1.14.3
-langchain==0.2.1
+streamlit==1.32.2
+langchain==0.2.5
+langchain_core==0.2.9
+langchain_community==0.2.1
+langchain_openai==0.1.7
+langchain_text_splitters==0.2.0
+faiss==1.7.2
