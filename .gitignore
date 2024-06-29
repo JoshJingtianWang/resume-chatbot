@@ -1,1 +1,7 @@
 .streamlit/secrets.toml
+*.ipynb
+documents/
+medium_article/
+junk/
+file_structure_with_checksums.pkl
+__pycache__/

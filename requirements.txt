@@ -1,2 +1,4 @@
 streamlit>=1.26.0
-hutchat==0.0.8
+hugchat==0.0.8
+openai==1.14.3
+langchain==0.2.1
