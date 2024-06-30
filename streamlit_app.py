@@ -210,6 +210,7 @@ if user_input := (st.chat_input("You:", key="user_input") or st.session_state.ge
                 st.write(assistant_response)
                 if eval_result == "Y":
                     image_paths = qa_output['image_paths'][:3] # display no more than 3 images
+                    print(image_paths)
                     if image_paths:
                         # Number of columns per row
                         num_columns_per_row = min(len(image_paths), 3)
@@ -222,4 +223,4 @@ if user_input := (st.chat_input("You:", key="user_input") or st.session_state.ge
                                     with cols[j]:
                                         st.image(image_path, width=get_image_width(num_columns_per_row))
                                 except Exception as e:
-                                    st.write(f"Failed to load {image_path}: {e}")
+                                    print(f"Failed to load {image_path}: {e}")

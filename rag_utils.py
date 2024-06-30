@@ -451,15 +451,32 @@ class QAFormat(BaseModel):
 
 qaformat_functions = [convert_to_openai_function(QAFormat)]
 
-qa_template = """Answer the question/request based only on the following context and chat history. 
+qa_template = """
+Answer the question/request based only on the following context and chat history. 
 You can assume that Josh Jingtian Wang is involved in everything listed in the context.
+
 You can also use the document source information from the metadata to provide additional context. 
 For example, if the source is "'source': './documents/University of Rochester/time series course intro.pptx'", you can infer that it is a lecture slide from a time series course at the University of Rochester.
 Use structured formatting such as bullet points or numbered lists when appropriate.
+
 In addition, extract a maximum of 3 image paths from the context only if they are relevant to the question/request. 
 The extracted image_paths should be sorted by the relevance of the documents they belong to, from most to least relevant.
+
+**Important Instructions for Extracting Image Paths**:
+1. Only extract paths that point to actual image files (e.g., .jpg, .png).
+2. Ensure that the paths are valid file paths.
+3. Do not extract descriptions or references to images that are not file paths.
+4. Examples of valid image paths:
+   - './extracted_images/University of Rochester/time series course intro/figure-4-3.jpg'
+   - './extracted_images/UC Irvine/JW_Dissertation_20220824/figure-68-11.png'
+5. Examples of invalid image paths:
+   - 'Figure 1: A picture of Josh’s cat Emma.' (This is a description, not a file path)
+   - "./documents/General/Supplementary info for Josh Jingtian Wang.pdf" (This is not an image file)
+
 If there are no image paths in the context, leave the image_paths empty.
-If there are images paths but they are not relevant to the user query, leave the image_paths empty.
+If there are image paths in the context but they are not relevant to the user query, leave the image_paths empty.
+Image paths should look like file paths, and should always point to image files (e.g., .jpg, .png).
+
 
 
 Context:
