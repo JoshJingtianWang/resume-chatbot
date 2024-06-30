@@ -88,6 +88,7 @@ questions = [
     'What skills does Josh have?',
     'Show me two figures that Josh has created for his data science projects and describe them',
     'Show me a picture of Josh\'s cat laying down',
+    'What is the weather like in Arlington, VA today?'
 ]
 
 # Initialize or load the conversation history
