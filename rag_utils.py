@@ -100,7 +100,7 @@ def load_chunk_retriever(category_name):
         child_splitter=child_splitter,
         parent_splitter=parent_splitter,
         search_type="similarity",
-        search_kwargs={'score_threshold': 0.5, 'k': 5}, # filtering for docs with similarity score < 0.5
+        search_kwargs={'score_threshold': 0.5, 'k': 4}, # filtering for docs with similarity score < 0.5
     )
     
     return chunk_retriever
@@ -475,8 +475,6 @@ The extracted image_paths should be sorted by the relevance of the documents the
 
 If there are no image paths in the context, leave the image_paths empty.
 If there are image paths in the context but they are not relevant to the user query, leave the image_paths empty.
-Image paths should look like file paths, and should always point to image files (e.g., .jpg, .png).
-
 
 
 Context:
@@ -494,7 +492,7 @@ qa_prompt = ChatPromptTemplate.from_messages([
     ("user", qa_template)
 ])
 
-qa_llm = ChatOpenAI(temperature=0, model='gpt-4o', openai_api_key=api_key)
+qa_llm = ChatOpenAI(temperature=0.5, model='gpt-4o', openai_api_key=api_key)
 qa_llm_structured = llm.bind(
     functions=qaformat_functions,
     function_call={"name": "QAFormat"}
@@ -537,7 +535,7 @@ eval_template = """You are an evaluator tasked with determining whether the answ
 The answerer is an LLM that answers user queries/requests.
 Consider the chat history and the user's question/request when evaluating the answer.
 
-A satisfactory answer **must not** include responses such as "I can't answer" or "I don't have enough info." These types of responses are not allowed.
+A satisfactory answer **must not** include responses such as "I can't answer" or "I don't have enough info." Any response that avoids these phrases or their equivalents is considered satisfactory.
 
 Example 1:
 User Question:
@@ -580,8 +578,8 @@ Answer with "Y" if the answer is satisfactory and "N" if it is not.
 
 EVAL_QUESTION_PROMPT = PromptTemplate.from_template(eval_template)
 
-llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
-#llm = ChatOpenAI(temperature=0, model='gpt-4o', openai_api_key=api_key)
+#llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
+llm = ChatOpenAI(temperature=0, model='gpt-4o', openai_api_key=api_key)
 
 llm_to_eval = llm.bind(
     functions=eval_functions,

@@ -84,10 +84,10 @@ system_prompt = """You are a friendly AI assistant that can help answer question
 
 questions = [
     'Where does Josh see himself in 5 years?',
-    'Give me a brief overview of Josh\'s PhD dissertation',
-    'What skills does Josh have?',
-    'Show me two figures that Josh has created for his data science projects and describe them',
-    'Show me a picture of Josh\'s cat laying down',
+    'Give me a brief overview of Josh\'s PhD dissertation.',
+    'Tell me about Josh\'s experience with data science.',
+    'Show me two figures that Josh has created for his data science projects and describe them.',
+    'Show me a picture of Josh\'s cat laying down.',
     'What is the weather like in Arlington, VA today?'
 ]
 
@@ -213,15 +213,20 @@ if user_input := (st.chat_input("You:", key="user_input") or st.session_state.ge
                     image_paths = qa_output['image_paths'][:3] # display no more than 3 images
                     print(image_paths)
                     if image_paths:
-                        # Number of columns per row
-                        num_columns_per_row = min(len(image_paths), 3)
+                        # # Number of columns per row
+                        # num_columns_per_row = min(len(image_paths), 3)
 
-                        # Loop through the image paths and display them in rows of columns
-                        for i in range(0, len(image_paths), num_columns_per_row):
-                            cols = st.columns(num_columns_per_row)
-                            for j, image_path in enumerate(image_paths[i:i+num_columns_per_row]):
-                                try:
-                                    with cols[j]:
-                                        st.image(image_path, width=get_image_width(num_columns_per_row))
-                                except Exception as e:
-                                    print(f"Failed to load {image_path}: {e}")
+                        # # Loop through the image paths and display them in rows of columns
+                        # for i in range(0, len(image_paths), num_columns_per_row):
+                        #     cols = st.columns(num_columns_per_row)
+                        #     for j, image_path in enumerate(image_paths[i:i+num_columns_per_row]):
+                        #         try:
+                        #             with cols[j]:
+                        #                 st.image(image_path, width=get_image_width(num_columns_per_row))
+                        #         except Exception as e:
+                        #             print(f"Failed to load {image_path}: {e}")
+                        for image_path in image_paths:
+                            try:
+                                st.image(image_path, width=400)
+                            except Exception as e:
+                                print(f"Failed to load {image_path}: {e}")
