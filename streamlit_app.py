@@ -21,7 +21,7 @@ from rag_utils import (preprocess_query_chain,
 st.set_page_config(page_title="🦜💬 ResumeChat")
 # Sidebar content
 st.sidebar.title("🦜💬 ResumeChat")
-st.sidebar.markdown("<h4 style='margin-top: -10px; color: gray;'>Powered by LangChain and gpt-3.5-turbo.</h4>", unsafe_allow_html=True)
+st.sidebar.markdown("<h4 style='margin-top: -10px; color: gray;'>Powered by LangChain, gpt-4o, and gpt-3.5-turbo.</h4>", unsafe_allow_html=True)
 st.sidebar.write("Discover more about Josh Jingtian Wang with this interactive AI chatbot.")
 #st.sidebar.write("Based on OpenAI's gpt-3.5-turbo.")
 st.sidebar.markdown("### Contact Info")
@@ -29,7 +29,7 @@ st.sidebar.markdown("### Contact Info")
 st.sidebar.markdown("""
 - 📧 [Email](mailto:13jtjoshua@gmail.com)
 - 🔗 [LinkedIn](https://www.linkedin.com/in/joshjingtianwang/)
-- 🐱 [GitHub](https://github.com/joshjingtianwang)
+- 🐱 [GitHub](https://github.com/JoshJingtianWang/resume-chatbot/)
 """)
 
 
