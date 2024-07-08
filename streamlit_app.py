@@ -83,10 +83,9 @@ system_prompt = """You are a friendly AI assistant that can help answer question
                     Answer with examples and details to provide a comprehensive response."""
 
 questions = [
-    'Where does Josh see himself in 5 years?',
-    'Give me a brief overview of Josh\'s PhD dissertation.',
-    'Tell me about Josh\'s experience with data science.',
+    'What did Josh do for his internship at IFF?',
     'Show me two figures that Josh has created for his data science projects and describe them.',
+    'Give me a brief overview of Josh\'s PhD dissertation.',
     'Show me a picture of Josh\'s cat laying down.',
     'What is the weather like in Arlington, VA today?'
 ]
