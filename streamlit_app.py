@@ -29,7 +29,8 @@ st.sidebar.markdown("### Contact Info")
 st.sidebar.markdown("""
 - 📧 [Email](mailto:13jtjoshua@gmail.com)
 - 🔗 [LinkedIn](https://www.linkedin.com/in/joshjingtianwang/)
-- 🐱 [GitHub](https://github.com/JoshJingtianWang/resume-chatbot/)
+- 🐱 [GitHub Repo](https://github.com/JoshJingtianWang/resume-chatbot/)
+- 📖 [Article](https://medium.com/@joshjtw/building-an-advanced-langchain-rag-chatbot-with-image-retrieval-and-agentic-routing-519f7765aa82)
 """)
 
 
