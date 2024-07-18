@@ -222,7 +222,7 @@ Output both the condensed chat history and the standalone question/request.
 
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(condense_template)
 
-llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
+llm = ChatOpenAI(temperature=0, model='gpt-4o-mini', openai_api_key=api_key)
 
 llm_to_condense = llm.bind(
     functions=condense_functions,
@@ -290,6 +290,7 @@ router_prompt1 = ChatPromptTemplate.from_messages(
 )
 
 router_llm1 = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
+#router_llm1 = ChatOpenAI(temperature=0, model='gpt-4o-mini', openai_api_key=api_key)
 structured_llm1 = router_llm1.with_structured_output(RouteQuery1)
 router_chain1 = RunnablePassthrough.assign(classification1 = (lambda x: x['standalone_question']) | router_prompt1 | structured_llm1)
 
@@ -359,7 +360,7 @@ router_prompt2 = ChatPromptTemplate.from_messages(
     ]
 )
 
-router_llm2 = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
+router_llm2 = ChatOpenAI(temperature=0, model='gpt-4o-mini', openai_api_key=api_key)
 #router_llm2 = ChatOpenAI(temperature=0, model='gpt-4o', openai_api_key=api_key)
 structured_llm2 = router_llm2.with_structured_output(RouteQuery2)
 router_chain2 = RunnablePassthrough.assign(classification2 = (lambda x: x['standalone_question']) | router_prompt2 | structured_llm2)
@@ -447,7 +448,7 @@ retrieval_chain = RunnablePassthrough.assign(context = route_query)
 class QAFormat(BaseModel):
     """Answer the user question/request and extract the relevant image paths from the context"""
     answer: str = Field(description="Answer to the user question/request")
-    image_paths: Optional[List[str]] = Field(default=None, description="Relevant image paths extracted from the context. Leave empty if no relevant images are found.")
+    image_paths: List[str] = Field(default_factory=list, description="Relevant image paths extracted from the context. Leave empty if no relevant images are found.")
 
 qaformat_functions = [convert_to_openai_function(QAFormat)]
 
@@ -492,7 +493,8 @@ qa_prompt = ChatPromptTemplate.from_messages([
     ("user", qa_template)
 ])
 
-qa_llm = ChatOpenAI(temperature=0.5, model='gpt-4o', openai_api_key=api_key)
+qa_llm = ChatOpenAI(temperature=0.5, model='gpt-4o-mini', openai_api_key=api_key)
+#qa_llm = ChatOpenAI(temperature=0.5, model='gpt-4o', openai_api_key=api_key)
 qa_llm_structured = llm.bind(
     functions=qaformat_functions,
     function_call={"name": "QAFormat"}
@@ -578,8 +580,8 @@ Answer with "Y" if the answer is satisfactory and "N" if it is not.
 
 EVAL_QUESTION_PROMPT = PromptTemplate.from_template(eval_template)
 
-#llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
-llm = ChatOpenAI(temperature=0, model='gpt-4o', openai_api_key=api_key)
+llm = ChatOpenAI(temperature=0, model='gpt-4o-mini', openai_api_key=api_key)
+#llm = ChatOpenAI(temperature=0, model='gpt-4o', openai_api_key=api_key)
 
 llm_to_eval = llm.bind(
     functions=eval_functions,
@@ -594,7 +596,7 @@ eval_chain = RunnablePassthrough.assign(eval_result = EVAL_QUESTION_PROMPT | llm
 # ====================================================================
 search = DuckDuckGoSearchRun()
 tools = [search]
-llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo', openai_api_key=api_key)
+llm = ChatOpenAI(temperature=0, model='gpt-4o-mini', openai_api_key=api_key)
 functions = [convert_to_openai_function(f) for f in tools]
 llm_to_search = llm.bind(functions=functions, function_call="auto")
 
