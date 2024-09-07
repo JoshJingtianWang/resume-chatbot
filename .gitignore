@@ -1,8 +1,8 @@
 .streamlit/secrets.toml
-*.ipynb
 documents/
 medium_article/
 junk/
+ignored/
 file_structure_with_checksums.pkl
 __pycache__/
 ~$plan.docx
